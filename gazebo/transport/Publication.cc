@@ -137,7 +137,7 @@ void Publication::AddTransport(const PublicationTransportPtr &_publink)
   if (add)
   {
     _publink->AddCallback(common::weakBind(&Publication::LocalPublish,
-                this->shared_from_this(), _1));
+                this->shared_from_this(), boost::placeholders::_1));
     this->transports.push_back(_publink);
   }
 }
@@ -277,7 +277,7 @@ void Publication::LocalPublish(const std::string &_data)
       if ((*cbIter)->IsLocal())
       {
         if ((*cbIter)->HandleData(_data,
-              boost::bind(&dummy_callback_fn, _1), 0))
+              boost::bind(&dummy_callback_fn, boost::placeholders::_1), 0))
           ++cbIter;
         else
           cbIter = this->callbacks.erase(cbIter);

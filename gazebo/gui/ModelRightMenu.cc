@@ -35,7 +35,7 @@ using namespace gui;
 ModelRightMenu::ModelRightMenu()
 {
   KeyEventHandler::Instance()->AddReleaseFilter("ModelRightMenu",
-        boost::bind(&ModelRightMenu::OnKeyRelease, this, _1));
+        boost::bind(&ModelRightMenu::OnKeyRelease, this, boost::placeholders::_1));
 
   this->moveToAct = new QAction(tr("Move To"), this);
   this->moveToAct->setStatusTip(tr("Move camera to the selection"));
@@ -130,7 +130,7 @@ ModelRightMenu::ModelRightMenu()
   // Event connections
   this->connections.push_back(
       gui::Events::ConnectWindowMode(
-      boost::bind(&ModelRightMenu::OnWindowMode, this, _1)));
+      boost::bind(&ModelRightMenu::OnWindowMode, this, boost::placeholders::_1)));
 }
 
 //////////////////////////////////////////////////

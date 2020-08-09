@@ -274,7 +274,7 @@ ModelEditor::ModelEditor(MainWindow *_mainWindow)
 
   this->dataPtr->connections.push_back(
       gui::Events::ConnectCreateEntity(
-        boost::bind(&ModelEditor::OnCreateEntity, this, _1, _2)));
+        boost::bind(&ModelEditor::OnCreateEntity, this, boost::placeholders::_1, boost::placeholders::_2)));
 
   this->dataPtr->menuBar = NULL;
   this->dataPtr->insertModel = NULL;

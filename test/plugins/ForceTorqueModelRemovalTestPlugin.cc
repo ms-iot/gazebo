@@ -53,7 +53,7 @@ void ForceTorqueModelRemovalTestPlugin::Load(sensors::SensorPtr _sensor,
 
   // Create connection
   this->updateConnection = gazebo::event::Events::ConnectWorldUpdateBegin(
-       boost::bind(&ForceTorqueModelRemovalTestPlugin::onUpdate, this, _1));
+       boost::bind(&ForceTorqueModelRemovalTestPlugin::onUpdate, this, boost::placeholders::_1));
 }
 
 void ForceTorqueModelRemovalTestPlugin::onUpdate(

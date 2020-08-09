@@ -263,7 +263,7 @@ BuildingEditorPalette::BuildingEditorPalette(QWidget *_parent)
   // Connections
   this->dataPtr->connections.push_back(
       gui::editor::Events::ConnectSaveBuildingModel(
-      boost::bind(&BuildingEditorPalette::OnSaveModel, this, _1)));
+      boost::bind(&BuildingEditorPalette::OnSaveModel, this, boost::placeholders::_1)));
 
   this->dataPtr->connections.push_back(
       gui::editor::Events::ConnectNewBuildingModel(
@@ -271,7 +271,7 @@ BuildingEditorPalette::BuildingEditorPalette(QWidget *_parent)
 
   this->dataPtr->connections.push_back(
       gui::editor::Events::ConnectCreateBuildingEditorItem(
-      boost::bind(&BuildingEditorPalette::OnCreateEditorItem, this, _1)));
+      boost::bind(&BuildingEditorPalette::OnCreateEditorItem, this, boost::placeholders::_1)));
 }
 
 /////////////////////////////////////////////////

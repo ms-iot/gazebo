@@ -289,7 +289,7 @@ void Connection::StopRead()
 //////////////////////////////////////////////////
 void Connection::EnqueueMsg(const std::string &_buffer, bool _force)
 {
-  this->EnqueueMsg(_buffer, boost::bind(&dummy_callback_fn, _1), 0, _force);
+  this->EnqueueMsg(_buffer, boost::bind(&dummy_callback_fn, boost::placeholders::_1), 0, _force);
 }
 
 //////////////////////////////////////////////////

@@ -54,15 +54,15 @@ EditorView::EditorView(QWidget *_parent)
 
   this->connections.push_back(
       gui::editor::Events::ConnectCreateBuildingEditorItem(
-      boost::bind(&EditorView::OnCreateEditorItem, this, _1)));
+      boost::bind(&EditorView::OnCreateEditorItem, this, boost::placeholders::_1)));
 
   this->connections.push_back(
       gui::editor::Events::ConnectColorSelected(
-      boost::bind(&EditorView::OnColorSelected, this, _1)));
+      boost::bind(&EditorView::OnColorSelected, this, boost::placeholders::_1)));
 
   this->connections.push_back(
       gui::editor::Events::ConnectTextureSelected(
-      boost::bind(&EditorView::OnTextureSelected, this, _1)));
+      boost::bind(&EditorView::OnTextureSelected, this, boost::placeholders::_1)));
 
   this->connections.push_back(
       gui::editor::Events::ConnectNewBuildingModel(
@@ -78,7 +78,7 @@ EditorView::EditorView(QWidget *_parent)
 
   this->connections.push_back(
       gui::editor::Events::ConnectChangeBuildingLevel(
-      boost::bind(&EditorView::OnChangeLevel, this, _1)));
+      boost::bind(&EditorView::OnChangeLevel, this, boost::placeholders::_1)));
 
   this->connections.push_back(
       gui::editor::Events::ConnectShowFloorplan(

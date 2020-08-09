@@ -162,7 +162,7 @@ ModelTreeWidget::ModelTreeWidget(QWidget *_parent)
   // Connections
   this->connections.push_back(
       gui::model::Events::ConnectSaveModel(
-      boost::bind(&ModelTreeWidget::OnSaveModel, this, _1)));
+      boost::bind(&ModelTreeWidget::OnSaveModel, this, boost::placeholders::_1)));
 
   this->connections.push_back(
       gui::model::Events::ConnectNewModel(
@@ -170,11 +170,11 @@ ModelTreeWidget::ModelTreeWidget(QWidget *_parent)
 
   this->connections.push_back(
       gui::model::Events::ConnectModelPropertiesChanged(
-      boost::bind(&ModelTreeWidget::OnModelPropertiesChanged, this, _1, _2)));
+      boost::bind(&ModelTreeWidget::OnModelPropertiesChanged, this, boost::placeholders::_1, boost::placeholders::_2)));
 
   this->connections.push_back(
       gui::model::Events::ConnectModelNameChanged(
-      boost::bind(&ModelTreeWidget::OnModelNameChanged, this, _1)));
+      boost::bind(&ModelTreeWidget::OnModelNameChanged, this, boost::placeholders::_1)));
 
   this->connections.push_back(
       gui::model::Events::ConnectNestedModelInserted(
@@ -183,51 +183,51 @@ ModelTreeWidget::ModelTreeWidget(QWidget *_parent)
 
   this->connections.push_back(
       gui::model::Events::ConnectLinkInserted(
-      boost::bind(&ModelTreeWidget::OnLinkInserted, this, _1)));
+      boost::bind(&ModelTreeWidget::OnLinkInserted, this, boost::placeholders::_1)));
 
   this->connections.push_back(
       gui::model::Events::ConnectJointInserted(
-      boost::bind(&ModelTreeWidget::OnJointInserted, this, _1, _2, _3, _4)));
+      boost::bind(&ModelTreeWidget::OnJointInserted, this, boost::placeholders::_1, boost::placeholders::_2, boost::placeholders::_3, boost::placeholders::_4)));
 
   this->connections.push_back(
       gui::model::Events::ConnectModelPluginInserted(
-      boost::bind(&ModelTreeWidget::OnModelPluginInserted, this, _1)));
+      boost::bind(&ModelTreeWidget::OnModelPluginInserted, this, boost::placeholders::_1)));
 
   this->connections.push_back(
       gui::model::Events::ConnectNestedModelRemoved(
-      boost::bind(&ModelTreeWidget::OnNestedModelRemoved, this, _1)));
+      boost::bind(&ModelTreeWidget::OnNestedModelRemoved, this, boost::placeholders::_1)));
 
   this->connections.push_back(
       gui::model::Events::ConnectLinkRemoved(
-      boost::bind(&ModelTreeWidget::OnLinkRemoved, this, _1)));
+      boost::bind(&ModelTreeWidget::OnLinkRemoved, this, boost::placeholders::_1)));
 
   this->connections.push_back(
       gui::model::Events::ConnectJointRemoved(
-      boost::bind(&ModelTreeWidget::OnJointRemoved, this, _1)));
+      boost::bind(&ModelTreeWidget::OnJointRemoved, this, boost::placeholders::_1)));
 
   this->connections.push_back(
       gui::model::Events::ConnectModelPluginRemoved(
-      boost::bind(&ModelTreeWidget::OnModelPluginRemoved, this, _1)));
+      boost::bind(&ModelTreeWidget::OnModelPluginRemoved, this, boost::placeholders::_1)));
 
   this->connections.push_back(
       gui::model::Events::ConnectJointNameChanged(
-      boost::bind(&ModelTreeWidget::OnJointNameChanged, this, _1, _2)));
+      boost::bind(&ModelTreeWidget::OnJointNameChanged, this, boost::placeholders::_1, boost::placeholders::_2)));
 
   this->connections.push_back(
      event::Events::ConnectSetSelectedEntity(
-       boost::bind(&ModelTreeWidget::OnDeselectAll, this, _1, _2)));
+       boost::bind(&ModelTreeWidget::OnDeselectAll, this, boost::placeholders::_1, boost::placeholders::_2)));
 
   this->connections.push_back(
      gui::model::Events::ConnectSetSelectedEntity(
-       boost::bind(&ModelTreeWidget::OnSetSelectedEntity, this, _1, _2)));
+       boost::bind(&ModelTreeWidget::OnSetSelectedEntity, this, boost::placeholders::_1, boost::placeholders::_2)));
 
   this->connections.push_back(
      gui::model::Events::ConnectSetSelectedJoint(
-       boost::bind(&ModelTreeWidget::OnSetSelectedJoint, this, _1, _2)));
+       boost::bind(&ModelTreeWidget::OnSetSelectedJoint, this, boost::placeholders::_1, boost::placeholders::_2)));
 
   this->connections.push_back(
      gui::model::Events::ConnectSetSelectedModelPlugin(
-     boost::bind(&ModelTreeWidget::OnSetSelectedModelPlugin, this, _1, _2)));
+     boost::bind(&ModelTreeWidget::OnSetSelectedModelPlugin, this, boost::placeholders::_1, boost::placeholders::_2)));
 
   this->ClearModelTree();
 }

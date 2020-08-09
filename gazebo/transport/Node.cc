@@ -251,7 +251,7 @@ void Node::ProcessIncoming()
               liter != cbIter->second.end(); ++liter)
           {
             (*liter)->HandleData(*msgIter,
-                boost::bind(&dummy_callback_fn, _1), 0);
+                boost::bind(&dummy_callback_fn, boost::placeholders::_1), 0);
           }
         }
       }
@@ -312,7 +312,7 @@ void Node::InsertLatchedMsg(const std::string &_topic, const std::string &_msg)
     {
       if ((*liter)->GetLatching())
       {
-        (*liter)->HandleData(_msg, boost::bind(&dummy_callback_fn, _1), 0);
+        (*liter)->HandleData(_msg, boost::bind(&dummy_callback_fn, boost::placeholders::_1), 0);
         (*liter)->SetLatching(false);
       }
     }

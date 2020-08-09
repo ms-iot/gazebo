@@ -485,7 +485,7 @@ TEST_F(CameraSensor, MultiSenseHigh)
 //  event::ConnectionPtr c =
 //    camSensor->Camera()->ConnectNewImageFrame(
 //        std::bind(&::OnNewCameraFrame, &imageCount, img,
-//          _1, _2, _3, _4, _5));
+//          boost::placeholders::_1, boost::placeholders::_2, boost::placeholders::_3, boost::placeholders::_4, boost::placeholders::_5));
 //  common::Timer timer;
 //  timer.Start();
 //  // time how long it takes to get N images
@@ -541,7 +541,7 @@ TEST_F(CameraSensor, MultiSenseLow)
 //  event::ConnectionPtr c =
 //    camSensor->Camera()->ConnectNewImageFrame(
 //        std::bind(&::OnNewCameraFrame, &imageCount, img,
-//          _1, _2, _3, _4, _5));
+//          boost::placeholders::_1, boost::placeholders::_2, boost::placeholders::_3, boost::placeholders::_4, boost::placeholders::_5));
 //  common::Timer timer;
 //  timer.Start();
 //  // time how long it takes to get N images

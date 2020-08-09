@@ -58,10 +58,10 @@ TEST_F(ModelDatabaseTest, GetModels)
   Load("worlds/empty.world");
 
   g_Connection = common::ModelDatabase::Instance()->GetModels(
-        boost::bind(&OnModels, _1));
+        boost::bind(&OnModels, boost::placeholders::_1));
 
   g_Connection1 = common::ModelDatabase::Instance()->GetModels(
-        boost::bind(&OnModels1, _1));
+        boost::bind(&OnModels1, boost::placeholders::_1));
 
   while (g_onModels == 0 || g_onModels1 == 0)
     common::Time::MSleep(500);
@@ -80,10 +80,10 @@ TEST_F(ModelDatabaseTest, GetModelsTwice)
   Load("worlds/empty.world");
 
   g_Connection = common::ModelDatabase::Instance()->GetModels(
-        boost::bind(&OnModels, _1));
+        boost::bind(&OnModels, boost::placeholders::_1));
 
   g_Connection1 = common::ModelDatabase::Instance()->GetModels(
-        boost::bind(&OnModels1, _1));
+        boost::bind(&OnModels1, boost::placeholders::_1));
 
   while (g_onModels == 0 || g_onModels1 == 0)
     common::Time::MSleep(500);
@@ -95,7 +95,7 @@ TEST_F(ModelDatabaseTest, GetModelsTwice)
   // Reset bool reference, so now only g_onModels1 should increment
   g_Connection.reset();
 
-  common::ModelDatabase::Instance()->GetModels(boost::bind(&OnModels, _1));
+  common::ModelDatabase::Instance()->GetModels(boost::bind(&OnModels, boost::placeholders::_1));
 
   while (g_onModels1 == 1)
     common::Time::MSleep(500);
@@ -115,13 +115,13 @@ TEST_F(ModelDatabaseTest, GetModelsThrice)
   Load("worlds/empty.world");
 
   g_Connection = common::ModelDatabase::Instance()->GetModels(
-        boost::bind(&OnModels, _1));
+        boost::bind(&OnModels, boost::placeholders::_1));
 
   g_Connection1 = common::ModelDatabase::Instance()->GetModels(
-        boost::bind(&OnModels1, _1));
+        boost::bind(&OnModels1, boost::placeholders::_1));
 
   g_Connection2 = common::ModelDatabase::Instance()->GetModels(
-        boost::bind(&OnModels2, _1));
+        boost::bind(&OnModels2, boost::placeholders::_1));
 
   while (g_onModels == 0 || g_onModels1 == 0 || g_onModels2 == 0)
   {
@@ -137,7 +137,7 @@ TEST_F(ModelDatabaseTest, GetModelsThrice)
   g_Connection.reset();
 
   common::ModelDatabase::Instance()->GetModels(
-      boost::bind(&OnModels, _1));
+      boost::bind(&OnModels, boost::placeholders::_1));
 
   while (g_onModels1 == 1 || g_onModels2 == 1)
     common::Time::MSleep(500);
@@ -150,7 +150,7 @@ TEST_F(ModelDatabaseTest, GetModelsThrice)
   g_Connection1.reset();
 
   common::ModelDatabase::Instance()->GetModels(
-      boost::bind(&OnModels, _1));
+      boost::bind(&OnModels, boost::placeholders::_1));
 
   while (g_onModels2 == 2)
     common::Time::MSleep(500);

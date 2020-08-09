@@ -241,10 +241,10 @@ void TerrainEditorPalette::SetState(const std::string &_state)
     // Add an event filter, which allows the TerrainEditor to capture
     // mouse events.
     MouseEventHandler::Instance()->AddPressFilter("terrain",
-        boost::bind(&TerrainEditorPalette::OnMousePress, this, _1));
+        boost::bind(&TerrainEditorPalette::OnMousePress, this, boost::placeholders::_1));
 
     MouseEventHandler::Instance()->AddMoveFilter("terrain",
-        boost::bind(&TerrainEditorPalette::OnMouseMove, this, _1));
+        boost::bind(&TerrainEditorPalette::OnMouseMove, this, boost::placeholders::_1));
   }
   else
   {

@@ -99,7 +99,7 @@ RenderWidget::RenderWidget(QWidget *_parent)
 
   this->connections.push_back(
       gui::Events::ConnectFollow(
-        boost::bind(&RenderWidget::OnFollow, this, _1)));
+        boost::bind(&RenderWidget::OnFollow, this, boost::placeholders::_1)));
 }
 
 /////////////////////////////////////////////////

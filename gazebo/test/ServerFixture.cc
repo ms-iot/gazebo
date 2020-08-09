@@ -526,7 +526,7 @@ void ServerFixture::GetFrame(const std::string &_cameraName,
   event::ConnectionPtr c =
     camSensor->Camera()->ConnectNewImageFrame(
         boost::bind(&ServerFixture::OnNewFrame,
-                    this, _1, _2, _3, _4, _5));
+                    this, boost::placeholders::_1, boost::placeholders::_2, boost::placeholders::_3, boost::placeholders::_4, boost::placeholders::_5));
 
   while (this->gotImage < 20)
     common::Time::MSleep(100);

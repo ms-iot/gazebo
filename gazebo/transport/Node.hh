@@ -249,7 +249,7 @@ namespace gazebo
         {
           boost::recursive_mutex::scoped_lock lock(this->incomingMutex);
           this->callbacks[decodedTopic].push_back(CallbackHelperPtr(
-                new CallbackHelperT<M>(boost::bind(_fp, _obj, _1), _latching)));
+                new CallbackHelperT<M>(boost::bind(_fp, _obj, boost::placeholders::_1), _latching)));
         }
 
         SubscriberPtr result =
@@ -308,7 +308,7 @@ namespace gazebo
         {
           boost::recursive_mutex::scoped_lock lock(this->incomingMutex);
           this->callbacks[decodedTopic].push_back(CallbackHelperPtr(
-                new RawCallbackHelper(boost::bind(_fp, _obj, _1))));
+                new RawCallbackHelper(boost::bind(_fp, _obj, boost::placeholders::_1))));
         }
 
         SubscriberPtr result =

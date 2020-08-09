@@ -91,6 +91,7 @@ endif ()
 ########################################
 # Find packages
 
+set(CURL_NO_CURL_CMAKE ON)
 find_package(CURL)
 if (CURL_FOUND)
   # FindCURL.cmake distributed with CMake exports

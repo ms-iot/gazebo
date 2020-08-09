@@ -70,7 +70,7 @@ void PublicationTransport::Init(const ConnectionPtr &_conn, bool _latched)
   // Put this in PublicationTransportPtr
   // Start reading messages from the remote publisher
   this->connection->AsyncRead(common::weakBind(&PublicationTransport::OnPublish,
-        this->shared_from_this(), _1));
+        this->shared_from_this(), boost::placeholders::_1));
 }
 
 
@@ -88,7 +88,7 @@ void PublicationTransport::OnPublish(const std::string &_data)
   {
     this->connection->AsyncRead(
         common::weakBind(&PublicationTransport::OnPublish,
-            this->shared_from_this(), _1));
+            this->shared_from_this(), boost::placeholders::_1));
 
     if (!_data.empty())
     {

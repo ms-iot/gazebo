@@ -88,7 +88,7 @@ void Master::Init(uint16_t _port)
   try
   {
     this->dataPtr->connection->Listen(_port,
-          boost::bind(&Master::OnAccept, this, _1));
+          boost::bind(&Master::OnAccept, this, boost::placeholders::_1));
   }
   catch(std::exception &_e)
   {
@@ -137,7 +137,7 @@ void Master::OnAccept(transport::ConnectionPtr _newConnection)
 
     // Start reading from the connection
     _newConnection->AsyncRead(
-        boost::bind(&Master::OnRead, this, index, _1));
+        boost::bind(&Master::OnRead, this, index, boost::placeholders::_1));
   }
 }
 
@@ -157,7 +157,7 @@ void Master::OnRead(const unsigned int _connectionIndex,
 
   // Read the next message
   if (conn && conn->IsOpen())
-    conn->AsyncRead(boost::bind(&Master::OnRead, this, _connectionIndex, _1));
+    conn->AsyncRead(boost::bind(&Master::OnRead, this, _connectionIndex, boost::placeholders::_1));
 
   // Store the message if it's not empty
   if (!_data.empty())

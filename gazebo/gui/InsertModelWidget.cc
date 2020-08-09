@@ -147,12 +147,12 @@ InsertModelWidget::InsertModelWidget(QWidget *_parent)
   // Connect a callback to trigger when the model paths are updated.
   this->connections.push_back(
           common::SystemPaths::Instance()->updateModelRequest.Connect(
-            boost::bind(&InsertModelWidget::OnModelUpdateRequest, this, _1)));
+            boost::bind(&InsertModelWidget::OnModelUpdateRequest, this, boost::placeholders::_1)));
 
   // Non-blocking call to get all the models in the database.
   this->dataPtr->getModelsConnection =
     common::ModelDatabase::Instance()->GetModels(
-        boost::bind(&InsertModelWidget::OnModels, this, _1));
+        boost::bind(&InsertModelWidget::OnModels, this, boost::placeholders::_1));
 
   // Use a signal/slot to populate the Ignition Fuel servers within the QT
   // thread.

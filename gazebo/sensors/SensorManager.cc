@@ -742,7 +742,7 @@ void SensorManager::ImageSensorContainer::Update(bool _force)
 SimTimeEventHandler::SimTimeEventHandler()
 {
   this->updateConnection = event::Events::ConnectWorldUpdateBegin(
-      boost::bind(&SimTimeEventHandler::OnUpdate, this, _1));
+      boost::bind(&SimTimeEventHandler::OnUpdate, this, boost::placeholders::_1));
 }
 
 /////////////////////////////////////////////////

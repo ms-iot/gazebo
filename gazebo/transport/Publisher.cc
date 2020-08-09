@@ -214,7 +214,7 @@ void Publisher::SendMessage()
       // enqueues the message!).
       int result = this->publication->Publish(*iter,
           common::weakBind(&Publisher::OnPublishComplete,
-              this->shared_from_this(), _1), *pubIter);
+              this->shared_from_this(), boost::placeholders::_1), *pubIter);
 
       // It is possible that OnPublishComplete() was called less times than
       // initially expected, which happens when a callback of the

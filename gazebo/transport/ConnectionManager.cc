@@ -88,7 +88,7 @@ bool ConnectionManager::Init(const std::string &_masterHost,
 
   // Create a new TCP server on a free port
   this->serverConn->Listen(0,
-      boost::bind(&ConnectionManager::OnAccept, this, _1));
+      boost::bind(&ConnectionManager::OnAccept, this, boost::placeholders::_1));
 
   gzmsg << "Waiting for master." << std::endl;
   uint32_t timeoutCount = 0;
@@ -187,7 +187,7 @@ bool ConnectionManager::Init(const std::string &_masterHost,
     gzerr << "Did not get publishers_init msg from master" << std::endl;
 
   this->masterConn->AsyncRead(
-      boost::bind(&ConnectionManager::OnMasterRead, this, _1));
+      boost::bind(&ConnectionManager::OnMasterRead, this, boost::placeholders::_1));
 
   this->initialized = true;
 
@@ -329,7 +329,7 @@ void ConnectionManager::OnMasterRead(const std::string &_data)
 {
   if (this->masterConn && this->masterConn->IsOpen())
     this->masterConn->AsyncRead(
-        boost::bind(&ConnectionManager::OnMasterRead, this, _1));
+        boost::bind(&ConnectionManager::OnMasterRead, this, boost::placeholders::_1));
 
   if (!_data.empty())
   {
@@ -450,7 +450,7 @@ void ConnectionManager::ProcessMessage(const std::string &_data)
 void ConnectionManager::OnAccept(ConnectionPtr _newConnection)
 {
   _newConnection->AsyncRead(
-      boost::bind(&ConnectionManager::OnRead, this, _newConnection, _1));
+      boost::bind(&ConnectionManager::OnRead, this, _newConnection, boost::placeholders::_1));
 
   // Add the connection to the list of connections
   boost::recursive_mutex::scoped_lock lock(this->connectionMutex);
@@ -465,7 +465,7 @@ void ConnectionManager::OnRead(ConnectionPtr _connection,
   {
     gzerr << "Data was empty, try again\n";
     _connection->AsyncRead(
-        boost::bind(&ConnectionManager::OnRead, this, _connection, _1));
+        boost::bind(&ConnectionManager::OnRead, this, _connection, boost::placeholders::_1));
     return;
   }
 

@@ -59,7 +59,7 @@ bool gazebo_shared::setup(const std::string &_prefix, int _argc, char **_argv,
   gazebo::common::load();
 
   // The SDF find file callback.
-  sdf::setFindCallback(boost::bind(&gazebo::common::find_file, _1));
+  sdf::setFindCallback(boost::bind(&gazebo::common::find_file, boost::placeholders::_1));
 
   // Initialize the informational logger. This will log warnings, and
   // errors.

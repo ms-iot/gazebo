@@ -364,7 +364,7 @@ TEST_F(NoiseTest, OnApplyNoise)
   EXPECT_TRUE(noise->GetNoiseType() == sensors::Noise::CUSTOM);
 
   noise->SetCustomNoiseCallback(
-    boost::bind(&OnApplyCustomNoise, _1));
+    boost::bind(&OnApplyCustomNoise, boost::placeholders::_1));
 
   for (double i = 0; i < 100; i += 1)
   {
