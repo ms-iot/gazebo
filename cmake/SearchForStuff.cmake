@@ -91,6 +91,7 @@ endif ()
 ########################################
 # Find packages
 
+set(CURL_NO_CURL_CMAKE ON)
 find_package(CURL)
 if (CURL_FOUND)
   # FindCURL.cmake distributed with CMake exports
@@ -355,6 +356,7 @@ if (PKG_CONFIG_FOUND)
 
   if (NOT OGRE_FOUND)
     # If OGRE was not found, try with the standard find_package(OGRE)
+    unset(OGRE_FOUND CACHE)
     find_package(OGRE COMPONENTS RTShaderSystem Terrain Overlay Paging)
     # Add each component include directories to OGRE_INCLUDE_DIRS because
     # some OGRE components headers include without prefix headers contained

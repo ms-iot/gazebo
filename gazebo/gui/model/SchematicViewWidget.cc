@@ -83,31 +83,31 @@ void SchematicViewWidget::Reset()
 void SchematicViewWidget::Init()
 {
   this->connections.push_back(gui::model::Events::ConnectLinkInserted(
-      boost::bind(&SchematicViewWidget::AddNode, this, _1)));
+      boost::bind(&SchematicViewWidget::AddNode, this, boost::placeholders::_1)));
 
   this->connections.push_back(gui::model::Events::ConnectLinkRemoved(
-      boost::bind(&SchematicViewWidget::RemoveNode, this, _1)));
+      boost::bind(&SchematicViewWidget::RemoveNode, this, boost::placeholders::_1)));
 
   this->connections.push_back(gui::model::Events::ConnectJointInserted(
-      boost::bind(&SchematicViewWidget::AddEdge, this, _1, _2, _3, _4, _5)));
+      boost::bind(&SchematicViewWidget::AddEdge, this, boost::placeholders::_1, boost::placeholders::_2, boost::placeholders::_3, boost::placeholders::_4, boost::placeholders::_5)));
 
   this->connections.push_back(gui::model::Events::ConnectJointRemoved(
-      boost::bind(&SchematicViewWidget::RemoveEdge, this, _1)));
+      boost::bind(&SchematicViewWidget::RemoveEdge, this, boost::placeholders::_1)));
 
   this->connections.push_back(gui::model::Events::ConnectJointChanged(
-      boost::bind(&SchematicViewWidget::UpdateEdge, this, _1, _2, _3, _4, _5)));
+      boost::bind(&SchematicViewWidget::UpdateEdge, this, boost::placeholders::_1, boost::placeholders::_2, boost::placeholders::_3, boost::placeholders::_4, boost::placeholders::_5)));
 
   this->connections.push_back(
      event::Events::ConnectSetSelectedEntity(
-       boost::bind(&SchematicViewWidget::OnDeselectAll, this, _1, _2)));
+       boost::bind(&SchematicViewWidget::OnDeselectAll, this, boost::placeholders::_1, boost::placeholders::_2)));
 
   this->connections.push_back(
      gui::model::Events::ConnectSetSelectedEntity(
-       boost::bind(&SchematicViewWidget::OnSetSelectedEntity, this, _1, _2)));
+       boost::bind(&SchematicViewWidget::OnSetSelectedEntity, this, boost::placeholders::_1, boost::placeholders::_2)));
 
   this->connections.push_back(
      gui::model::Events::ConnectSetSelectedJoint(
-       boost::bind(&SchematicViewWidget::OnSetSelectedJoint, this, _1, _2)));
+       boost::bind(&SchematicViewWidget::OnSetSelectedJoint, this, boost::placeholders::_1, boost::placeholders::_2)));
 }
 
 /////////////////////////////////////////////////
