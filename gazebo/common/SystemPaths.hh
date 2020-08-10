@@ -88,12 +88,12 @@ namespace gazebo
       /// Returns the default path suitable for temporary files.
       /// \return a full path name to directory.
       /// E.g.: /tmp (Linux).
-      public: const std::string &TmpPath() const;
+      public: std::string TmpPath() const;
 
       /// Returns a unique temporary file for this instance of SystemPath.
       /// \return a full path name to directory.
       /// E.g.: /tmp/gazebo_234123 (Linux).
-      public: const std::string &TmpInstancePath() const;
+      public: std::string TmpInstancePath() const;
 
       /// Returns the default temporary test path.
       /// \return a full path name to directory.

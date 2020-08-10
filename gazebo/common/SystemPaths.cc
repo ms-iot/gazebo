@@ -173,13 +173,13 @@ const std::list<std::string> &SystemPaths::GetOgrePaths()
 }
 
 /////////////////////////////////////////////////
-const std::string &SystemPaths::TmpPath() const
+std::string SystemPaths::TmpPath() const
 {
   return this->tmpPath.string();
 }
 
 /////////////////////////////////////////////////
-const std::string &SystemPaths::TmpInstancePath() const
+std::string SystemPaths::TmpInstancePath() const
 {
   return this->tmpInstancePath.string();
 }
